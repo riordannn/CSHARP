@@ -1,0 +1,145 @@
+===========DOJO BANCO=============
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp10
+{
+  class Banco
+  {
+      static void cadastrarClientes()
+      {
+        Dictionary<string, string> IDCliente = new Dictionary<string, string>();
+      // adiciona o cliente
+      
+      Console.WriteLine("digire seu nome");
+      string nomeCliente = Console.ReadLine();
+      Console.WriteLine("digire seu CPF");
+      string Id = Console.ReadLine();
+      IDCliente.Add(Id, nomeCliente);
+      Console.Clear();
+      Console.WriteLine($"parabens, {IDCliente[Id]} voce se cadastrou no banco BanRio");
+      
+      }
+      
+      
+      static void cadastrarConta()
+      {
+        // escolhe qual conta o cliente cadastrado deseja ter
+      Dictionary<string, int> contaCorrente = new Dictionary<string, int>();     
+      Dictionary<string, int> contaPoupanca = new Dictionary<string, int>();
+
+      int SaldoCorrente = 500;
+      int SaldoPoupanca = 500;
+
+
+      Random random = new Random(); 
+      
+
+      int numCorrente = 0;
+      int numPoupanca = 0;
+
+      Console.WriteLine("digite seu cpf: ");
+      string cpf =Console.ReadLine();
+      if(cpf.Contains(Id))
+            {
+                Console.WriteLine("Ótimo!! você deseja criar sua conta (1)corrente, (2)poupança ou as (3)duas?");
+                int escolha = int.Parse(Console.ReadLine());
+                switch (escolha)
+               {
+                    case 1:
+                        random = new Random();
+                        numCorrente = random.Next(1500, 500000);
+                        contaCorrente.Add(Id, numCorrente);
+                        Console.WriteLine($"voce criou a conta poupanca numero: {contaCorrente[Id]}");
+                        break;
+                    case 2:
+                        random = new Random();
+                        numPoupanca = random.Next(1500, 500000);
+                        contaPoupanca.Add(Id, numPoupanca);
+                        Console.WriteLine($"voce criou a conta poupanca numero: {contaPoupanca[Id]}");
+                        break;
+                    case 3:
+                        numCorrente = random.Next(1500, 500000);
+                        contaCorrente.Add(Id, numCorrente);
+                        numPoupanca = random.Next(1500, 500000);
+                        contaPoupanca.Add(Id, numPoupanca);
+                        Console.WriteLine($"voce criou a conta corrente numero: {contaCorrente[Id]}, poupanca numero: {contaPoupanca[Id]}");
+                        break;
+                    default:
+                        Console.WriteLine("Escolha uma opcao valida");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Digite um cpf válido");
+            }
+        }
+        
+        static void sacar()
+        {
+            Console.WriteLine("digite seu cpf: ");
+            cpf = Console.ReadLine();
+            Console.WriteLine("deseja sacar da conta (1)corrente ou da (2)poupanca");
+            int resposta = int.Parse(Console.ReadLine());
+            int valor = 0;
+            switch (resposta)
+            {
+                case 1:
+                    Console.WriteLine("deseja sacar quanto?");
+                    valor = int.Parse(Console.ReadLine());
+                    SaldoCorrente -= valor;
+                    Console.WriteLine(SaldoCorrente);
+                
+                    break;
+                case 2:
+                    Console.WriteLine("deseja sacar quanto?");
+                    valor = int.Parse(Console.ReadLine());
+                    SaldoPoupanca -= valor;
+                    Console.WriteLine(SaldoPoupanca);
+
+                    break;
+                    default:
+                    Console.WriteLine("digite uma conta que deseja sacar");
+                    break;
+            }
+        }
+        static void deposito()
+        {
+            Console.WriteLine("digite seu cpf: ");
+            cpf = Console.ReadLine();
+            Console.WriteLine("deseja depositar da conta (1)corrente ou da (2)poupanca");
+            resposta = int.Parse(Console.ReadLine());
+            valor = 0;
+            switch (resposta)
+            {
+                case 1:
+                    Console.WriteLine("deseja depositar quanto?");
+                    valor = int.Parse(Console.ReadLine());
+                    SaldoCorrente += valor;
+                    Console.WriteLine(SaldoCorrente);
+                
+                    break;
+                case 2:
+                    Console.WriteLine("deseja depositar quanto?");
+                    valor = int.Parse(Console.ReadLine());
+                    SaldoPoupanca += valor;
+                    Console.WriteLine(SaldoPoupanca);
+
+                    break;
+                    default:
+                    Console.WriteLine("digite uma conta que deseja depositar");
+                    break;
+            }
+            
+        }
+
+    static void Main(string[] args)
+    {
+      
+    }
+  }
+}
